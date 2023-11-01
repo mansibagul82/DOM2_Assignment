@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            #page{
+                width: 60%;
+                height: 500px;
+                background-color: white;
+                text-align: center;
+                margin: auto;
+            }
+
+            #display{
+                color: rgb(223, 11, 11);
+                background-color: rgb(229, 200, 238);
+                border-color: transparent;
+                height: 60px;
+                width: 50%;
+                border-radius: 6px;
+                margin: auto;
+                box-shadow: rgba(64, 62, 62, 0.24) 0px 3px 6px;
+            }
+
+            #key > .num{
+                color: black;
+                width: 9%;
+                height: 40px;
+                background-color: rgb(168, 230, 247);
+                font-weight:bold;
+                margin: 2%;
+                border-radius: 6px;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 6px;
+            }
+            #operator > .sym{
+                color: white;
+                width: 6%;
+                height: 40px;
+                margin: 3%;
+                background-color: black;
+                font-weight:bold;
+                border-radius: 6px;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 6px;
+            }
+            #equal{
+                color: rgb(14, 13, 13);
+                width: 6%;
+                height: 40px;
+                margin: 3%;
+                background-color: rgb(223, 204, 25);
+                font-weight:bold;
+                border-radius: 6px;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 6px;
+
+            }
+            body{
+                background-color: black;
+            }
+            button{
+                border-color: transparent;
+                cursor: pointer;
+            }
+            
+        </style>
+    </head>
+    <body>
+
+        <div id="page">
+            <div id="Calculator">
+                <h1 id="display"></h1>
+                <div id="key">
+                    <button class="num">0</button>
+                    <button class="num">1</button>
+                    <button class="num">2</button>
+                    <button class="num">3</button>
+                    <button class="num">4</button>
+                    <button class="num">5</button>
+                    <button class="num">6</button>
+                    <button class="num">7</button>
+                    <button class="num">8</button>
+                    <button class="num">9</button>
+                </div>
+                <div id="operator">
+                    <button class="sym">-</button>
+                    <button class="sym">+</button>   
+                    <button class="sym">*</button>
+                    <button class="sym">/</button>
+                    <button class="sym">%</button>
+                </div>
+                <button id="equal">=</button>
+            </div>
+        </div>
+        
+    </body>
+</html>
+<script>
+    let keypad = document.querySelectorAll('#key > button')
+    let operatorbutton = document.querySelectorAll('#operator > button')
+    let head = document.getElementById('display')
+    let equalto = document.getElementById('equal')
+    let firstnumber =  "";
+    let isoperator = true;
+    let secondnumber = "";
+    let operatorstore = ""
+
+    // (=) equalto function
+    equalto.addEventListener('click',function()
+    {
+        head.innerText = calculate(firstnumber,secondnumber, operatorstore)
+    })
+
+    // loop for keypad
+    for (let a = 0; a < keypad.length;a++)
+    {
+        keypad[a].addEventListener('click',function()
+        {
+            // concatenation
+            if (isoperator == true)
+            {
+                firstnumber += keypad[a].innerText
+                head.innerText = firstnumber
+            }
+            else{
+                secondnumber += keypad[a].innerText
+                head.innerText =  secondnumber
+            }
+        })
+    }
+
+    // operator button loop 
+    for(let a = 0; a < operatorbutton.length; a++)
+    {
+        operatorbutton[a].addEventListener('click',function()
+        {
+            isoperator = false
+            operatorstore =  operatorbutton[a].innerText
+        })
+    }
+    
+    // calculate function for numbers
+    function calculate(firstnumber,secondnumber, operatorstore)
+    {
+        switch( operatorstore)
+        {
+            case "-" :
+            return Number(firstnumber) - Number(secondnumber);
+            case "+" :
+            return Number(firstnumber) + Number(secondnumber);
+            case "*" :
+            return Number(firstnumber) * Number(secondnumber)
+            case "/" :
+            return Number(firstnumber) / Number(secondnumber)
+            case "%" :
+            return Number(firstnumber) % Number(secondnumber)
+        }
+
+    }
+
+</script>
