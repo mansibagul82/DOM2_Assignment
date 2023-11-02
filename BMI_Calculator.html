@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body{
+            margin: 0%;
+            padding: 0%;
+            color: rgb(210, 136, 224);
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: rgb(243, 201, 199);
+            
+        }
+        .wrapper{
+            position: absolute;
+            top: 20%;
+            left: 30%;
+            padding: 15px;
+            background-color: black;
+            border-radius: 4px;
+            box-shadow: rgb(38, 57,77);
+        }
+        input{
+            outline: none;
+            border: none;
+            padding: 5px;
+        }
+        button{
+            color: white;
+            padding: 10px;
+            border: 2px solid rgb(248, 245, 245);
+            background-color: black;
+            display: block;
+            margin-top: 10%;
+            cursor: pointer;
+        }
+        span {
+            color: rgb(242, 221, 59)
+        }
+    </style>
+</head>
+<body>
+    <div class=" wrapper">
+        <h1>Check your BMI</h1>
+        <p>Enter your weight and height below to check your BMI results</p>
+        <h2>put your weight in here(KG)</h2>
+        <input type="text" id="wei"><br><span id="weight_error"></span>
+
+        <h2>and your height in here(CM)</h2>
+        <input type="text" id="hei"><br><span id="height_error"></span>
+
+        <button id="btn">Calculate BMI</button>
+        <p id="output"></p>
+    </div>
+</body>
+</html>
+<script>
+  //write js here
+  let button = document.getElementById("btn")
+
+  button.addEventListener('click',() =>
+  {
+    let weight = parseInt(document.getElementById('wei').value);
+    let height = parseInt(document.getElementById('hei').value);
+    let result = document.getElementById('output') 
+    let height_status = false,weight_status = false;
+
+    if (weight === ''|| isNaN(weight)|| (weight <= 0))
+    {
+        document.getElementById('weight_error').innerHTML = 'please provide a valid weight';
+
+    }
+    else{
+        document.getElementById('weight_error').innerHTML = '';
+        weight_status = true;
+    }
+
+    if (height === ''|| isNaN(height)|| (height <= 0))
+    {
+        document.getElementById('height_error').innerHTML = 'please provide a valid height';
+
+    }
+    else{
+        document.getElementById('height_error').innerHTML = '';
+        height_status = true;
+    }
+
+    if (weight_status && height_status){
+        let BMI = (weight / (height * height)).toFixed(2);
+
+        if (BMI <= 18.4)
+        {
+            result.innerHTML = 'Under Weight :' + BMI;
+        }
+        else if (BMI >= 18.5 && BMI <= 24.9)
+        {
+            result.innerHTML = 'Normal Weight :' + BMI
+        }
+        else if (BMI >= 25 && BMI <= 29.9)
+        {
+            result.innerHTML = 'Overweight :' + BMI
+        }
+        else if (BMI >= 30)
+        {
+            result.innerHTML = 'Obese :' + BMI
+        }
+        else{
+            result.innerHTML = ''
+        }
+    }
+  });
+
+ 
+</script>
