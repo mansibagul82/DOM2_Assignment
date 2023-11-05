@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+    <style>
+        #main{
+            margin: auto;
+            height: 100px;
+            width: 50%;
+        }
+        
+        #div{ 
+            margin: auto;
+            width: 40%;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-row-gap: 30px;
+        }
+
+        .board{
+            margin-left: 10%;
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .Min{
+            background-color: red;
+            width: 18%;
+            padding: 7%;
+        }
+
+        .Max{
+            background-color: rgb(11, 168, 11);
+            padding: 7%;
+            width: 18%;
+        }
+
+        button{
+            height: 60px;
+            width: 70%;
+            border: 1.5px solid black;
+            background-color: rgba(250, 99, 6, 0.986);
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; 
+        }
+
+        .green{
+            background-color: rgba(89, 148, 6, 0.913);
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; 
+        }
+
+        .purple{
+            background-color: purple;
+            color: white;
+        }
+
+        #black{
+            background-color: black;
+            padding: 5%;
+            font-size: medium;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin-top: 2%;
+            margin-left: 33%;
+            color: white;
+            width: 32%;
+        }
+
+        #has{
+            width: 18%;
+            margin-left: 39%;
+            margin-bottom: 5%;
+            background-color: rgb(161, 158, 158);
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; 
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div class="board">
+            <button class="Min">43</button>
+            <button class="Max">2019</button>
+        </div>
+        <p style=" margin-left: 35%; margin-top: 4px;">MIN</p>
+        <p style=" margin-left: 70%; margin-top: -5%;">MAX<p>
+        <h3 style=" margin-left: 42%; margin-bottom: 1%;">SCORE</h3>
+        <button id="has">#</button>
+        <div id="div">
+            <button class="green">1</button>
+            <button>2</button>
+            <button  class="green">3</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button  class="green">7</button>
+            <button>8</button>
+            <button  class="green">9</button>
+            <b></b>
+            <button class="purple">0</button>
+        </div>
+        <button id="black">ENTER</button>
+    </div>
+   
+</body>
+
+<script>
+    let min = Number(document.getElementsByClassName('Min').innerText);
+    let max = Number(document.getElementsByClassName('Max').innerText);
+    let key = document.querySelectorAll('#div > button');
+    let scorebox = document.getElementById("has");
+    let enter = document.getElementById('black')
+    let score1 = ""
+
+    for (let a = 0; a < key.length;a++)
+    {
+        key[a].addEventListener('click',function()
+        {
+            score1 += key[a].innerText
+            scorebox.innerText = score1
+        })
+    }
+    
+    enter.addEventListener("click",function(){
+
+        if (Number(scorebox) < (min))
+        {
+            min.innerText = scoreboxinnerText;
+        }
+
+        else if(Number(scorebox.innerText) > (max.innerText))
+        {
+            max.innerText = scorebox.innerText
+        }
+
+        scorebox.innerText = "";
+    })
+
+</script>
+
+
+
+
